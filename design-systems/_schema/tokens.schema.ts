@@ -227,6 +227,10 @@ export const BRAND_EXTENSIONS: Readonly<Record<string, readonly string[]>> = {
     "--radius-xl", // 16px — kami hero containers
     "--elev-ring-accent", // 1px brand ring used as primary-button edge
   ],
+  "mijn-thuisbatterij": [
+    "--hero-bg", // official Emerald Green (#00A36F) hero-band wash + "mijn" wordmark color
+    "--illustration-orange", // official Orange (#E94E1B), illustration/icon-set use only
+  ],
 };
 
 /**

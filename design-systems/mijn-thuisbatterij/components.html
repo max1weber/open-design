@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mijn Thuisbatterij — reference components</title>
+    <meta
+      name="description"
+      content="Reference fixture for design-systems/mijn-thuisbatterij. Every
+        visible value comes from tokens.css: an Emerald Green hero band,
+        Dark Green ink/CTAs, the Dongel plug-mascot as feature bullet,
+        Tilt Warp display type, and Outfit Light body text."
+    />
+
+    <style>
+      /* :root paste — sourced verbatim from design-systems/mijn-thuisbatterij/tokens.css. */
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-warm: #9cd6e8;
+        --fg: #0e3d23;
+        --fg-2: var(--fg);
+        --muted: #4c6a5b;
+        --meta: var(--muted);
+        --border: #d7ece3;
+        --border-soft: var(--border);
+        --accent: #0e3d23;
+        --accent-on: #ffffff;
+        --accent-hover: #13512e;
+        --accent-active: #0a2c19;
+        --success: #00a36f;
+        --warn: #ffcd00;
+        --danger: #dc2626;
+        --font-display: "Tilt Warp", "Baloo 2", -apple-system, system-ui, sans-serif;
+        --font-body: "Outfit", -apple-system, system-ui, sans-serif;
+        --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+        --text-xs: 12px;
+        --text-sm: 14px;
+        --text-base: 16px;
+        --text-lg: 20px;
+        --text-xl: 24px;
+        --text-2xl: 32px;
+        --text-3xl: 40px;
+        --text-4xl: 56px;
+        --leading-body: 1.5;
+        --leading-tight: 1.15;
+        --tracking-display: 0em;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --section-y-desktop: 80px;
+        --section-y-tablet: 56px;
+        --section-y-phone: 40px;
+        --radius-sm: 16px;
+        --radius-md: 24px;
+        --radius-lg: 32px;
+        --radius-pill: 9999px;
+        --elev-flat: none;
+        --elev-ring: 0 0 0 1px var(--border);
+        --elev-raised: 0 2px 8px color-mix(in oklab, var(--fg), transparent 92%);
+        --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+        --motion-fast: 150ms;
+        --motion-base: 200ms;
+        --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+        --container-max: 1200px;
+        --container-gutter-desktop: 32px;
+        --container-gutter-tablet: 24px;
+        --container-gutter-phone: 16px;
+        --hero-bg: #00a36f;
+        --illustration-orange: #e94e1b;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-weight: 300;
+        font-size: var(--text-base);
+        line-height: var(--leading-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      .container {
+        max-width: var(--container-max);
+        margin-inline: auto;
+        padding-inline: var(--container-gutter-desktop);
+      }
+      h1, h2, h3, p { margin: 0; }
+      h1, h2, h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        line-height: var(--leading-tight);
+        letter-spacing: var(--tracking-display);
+      }
+
+      /* ── Hero (Emerald Green band, reversed logo lockup) ─────────── */
+      .hero {
+        background: var(--hero-bg);
+        padding-block: var(--section-y-desktop);
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-inner { position: relative; display: grid; gap: var(--space-8); }
+      .nav-row { display: flex; align-items: center; justify-content: space-between; margin-block-end: var(--space-8); }
+      .logo-card {
+        display: inline-flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        background: #ffffff;
+        color: var(--fg);
+        padding: var(--space-4) var(--space-5);
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .logo-glyph { width: 40px; height: 28px; }
+      .logo-word { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.05; }
+      .logo-word .mijn { color: var(--success); }
+      .logo-underline { width: 100%; height: 2px; background: var(--border); }
+      .logo-tagline { font-size: var(--text-xs); color: var(--success); font-style: italic; }
+      .menu-icon { display: grid; gap: 5px; }
+      .menu-icon span { width: 28px; height: 3px; background: #ffffff; border-radius: 2px; }
+      .sun-decor { position: absolute; top: var(--space-4); right: var(--space-8); opacity: 0.9; }
+      h1.hero-headline { font-size: var(--text-4xl); max-width: 14ch; color: #ffffff; }
+
+      /* ── Feature list (Dongel mascot chip + text) ─────────────────── */
+      .features { padding-block: var(--section-y-desktop); }
+      .feature-row { display: flex; align-items: center; gap: var(--space-5); }
+      .feature-row + .feature-row { margin-block-start: var(--space-8); }
+      .dongel-chip {
+        flex: none;
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-md);
+        background: var(--surface-warm);
+        display: grid;
+        place-items: center;
+      }
+      .feature-text { font-family: var(--font-body); font-weight: 600; font-size: var(--text-lg); color: var(--fg); }
+
+      /* ── CTA pair ──────────────────────────────────────────────────── */
+      .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-block-start: var(--space-8); }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 56px;
+        padding: 0 var(--space-8);
+        border-radius: var(--radius-pill);
+        font: 400 var(--text-base) / 1.15 var(--font-display);
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          background-color var(--motion-fast) var(--ease-standard),
+          border-color var(--motion-fast) var(--ease-standard),
+          color var(--motion-fast) var(--ease-standard);
+      }
+      .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+      .btn-primary { background: var(--accent); color: var(--accent-on); }
+      .btn-primary:hover { background: var(--accent-hover); }
+      .btn-primary:active { background: var(--accent-active); }
+      .btn-secondary { background: #ffffff; color: var(--accent); border-color: var(--accent); }
+      .btn-secondary:hover { background: var(--border); }
+
+      /* ── Lower section: palette / typography / illustration swatches ── */
+      .lower {
+        padding-block: var(--section-y-desktop);
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+      }
+      .lower-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-6);
+      }
+      .tile {
+        padding: var(--space-5);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: #ffffff;
+      }
+      .tile h3 { font-size: var(--text-lg); margin-block-end: var(--space-3); }
+      .tile p { color: var(--muted); font-size: var(--text-sm); margin-block-start: var(--space-2); }
+      .swatches { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-block-start: var(--space-3); }
+      .swatch { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+      .swatch.fg { background: var(--fg); }
+      .swatch.hero { background: var(--hero-bg); }
+      .swatch.warm { background: var(--surface-warm); }
+      .swatch.warn { background: var(--warn); }
+      .swatch.orange { background: var(--illustration-orange); }
+      .type-sample-display { font-family: var(--font-display); font-size: var(--text-xl); margin-block-start: var(--space-2); }
+      .type-sample-body { font-family: var(--font-body); font-weight: 300; font-size: var(--text-base); margin-block-start: var(--space-2); }
+      .icon-row { display: flex; gap: var(--space-3); margin-block-start: var(--space-3); }
+      .icon-tile {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        display: grid;
+        place-items: center;
+      }
+      .icon-tile.green { background: var(--fg); }
+      .icon-tile.emerald { background: var(--hero-bg); }
+
+      @media (max-width: 860px) {
+        .hero-inner { grid-template-columns: 1fr; }
+        .lower-grid { grid-template-columns: 1fr; }
+        .cta-row { flex-direction: column; }
+        .btn { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- ════════════════════════════════════════════════════════════
+           HERO — exercises: --hero-bg, the reversed logo lockup
+           (white card on green), the yellow decorative sun/lightning
+           motif, and the Tilt Warp hero headline (DESIGN.md §4 Logo
+           Lockup, §1 Visual Theme).
+      ═══════════════════════════════════════════════════════════════ -->
+      <section class="hero" data-od-id="hero">
+        <div class="container hero-inner">
+          <div class="nav-row">
+            <div class="logo-card">
+              <svg class="logo-glyph" viewBox="0 0 40 28" fill="none" aria-hidden="true">
+                <path d="M2 14 L20 2 L38 14" stroke="var(--warn)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </svg>
+              <span class="logo-word"><span class="mijn">mijn</span><br />thuis<br />batterij</span>
+              <span class="logo-underline" aria-hidden="true"></span>
+              <span class="logo-tagline">besparing <em>in</em>zicht</span>
+            </div>
+            <div class="menu-icon" aria-label="Menu" role="img">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <svg class="sun-decor" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+            <g fill="var(--warn)">
+              <circle cx="36" cy="36" r="14" />
+              <g>
+                <rect x="33" y="2" width="6" height="16" rx="3" />
+                <rect x="33" y="54" width="6" height="16" rx="3" />
+                <rect x="2" y="33" width="16" height="6" rx="3" />
+                <rect x="54" y="33" width="16" height="6" rx="3" />
+              </g>
+            </g>
+          </svg>
+
+          <h1 class="hero-headline">Een batterij die jou éxact past?</h1>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           FEATURES — exercises: .dongel-chip (--surface-warm), the
+           feature-row pattern, and Outfit Semibold feature text
+           (DESIGN.md §4 Dongel Mascot, §3 Typography Hierarchy).
+      ═══════════════════════════════════════════════════════════════ -->
+      <section class="features" data-od-id="features">
+        <div class="container">
+          <div class="feature-row">
+            <span class="dongel-chip" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M10 2h2v6h-2zM16 2h2v6h-2z" fill="var(--fg)" />
+                <rect x="6" y="8" width="16" height="16" rx="8" fill="var(--surface-warm)" stroke="var(--fg)" stroke-width="1.5" />
+                <circle cx="11" cy="16" r="1.4" fill="var(--fg)" />
+                <circle cx="17" cy="16" r="1.4" fill="var(--fg)" />
+                <path d="M11 20c1.2 1.2 3.8 1.2 5 0" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+              </svg>
+            </span>
+            <p class="feature-text">Weet precies wat een thuisbatterij jou oplevert middels onze batterijsimulator</p>
+          </div>
+          <div class="feature-row">
+            <span class="dongel-chip" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M10 2h2v6h-2zM16 2h2v6h-2z" fill="var(--fg)" />
+                <rect x="6" y="8" width="16" height="16" rx="8" fill="var(--surface-warm)" stroke="var(--fg)" stroke-width="1.5" />
+                <circle cx="11" cy="16" r="1.4" fill="var(--fg)" />
+                <circle cx="17" cy="16" r="1.4" fill="var(--fg)" />
+                <path d="M11 20c1.2 1.2 3.8 1.2 5 0" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+              </svg>
+            </span>
+            <p class="feature-text">Op basis van je eigen verbruik &amp; opwek een batterijsimulatie</p>
+          </div>
+          <div class="feature-row">
+            <span class="dongel-chip" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M10 2h2v6h-2zM16 2h2v6h-2z" fill="var(--fg)" />
+                <rect x="6" y="8" width="16" height="16" rx="8" fill="var(--surface-warm)" stroke="var(--fg)" stroke-width="1.5" />
+                <circle cx="11" cy="16" r="1.4" fill="var(--fg)" />
+                <circle cx="17" cy="16" r="1.4" fill="var(--fg)" />
+                <path d="M11 20c1.2 1.2 3.8 1.2 5 0" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+              </svg>
+            </span>
+            <p class="feature-text">Kies met die hulp het juiste vermogen thuisbatterij — zonder gok.</p>
+          </div>
+
+          <!-- ══════════════════════════════════════════════════════
+               CTA — exercises: .btn-primary (solid Dark Green pill),
+               .btn-secondary (white / Dark-Green-outline pill),
+               equal-weight primary/secondary pairing.
+          ═══════════════════════════════════════════════════════════ -->
+          <div class="cta-row">
+            <a href="#" class="btn btn-primary">Meer info over<br />een thuisbatterij</a>
+            <a href="#" class="btn btn-secondary">Batterijsimulatie</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           LOWER — general token coverage: palette swatches,
+           typography pairing sample, illustration-system swatch.
+      ═══════════════════════════════════════════════════════════════ -->
+      <section class="lower" data-od-id="reference">
+        <div class="container lower-grid">
+          <article class="tile">
+            <h3>Palette</h3>
+            <p>Dark Green ink/CTA, Emerald hero/success, Light Blue mascot/chip, Yellow warn/energy, Orange illustration-only.</p>
+            <div class="swatches" aria-label="Token swatches">
+              <span class="swatch fg"></span>
+              <span class="swatch hero"></span>
+              <span class="swatch warm"></span>
+              <span class="swatch warn"></span>
+              <span class="swatch orange"></span>
+            </div>
+          </article>
+          <article class="tile">
+            <h3>Typography</h3>
+            <p class="type-sample-display">Tilt Warp — headers</p>
+            <p class="type-sample-body">Outfit Light — body copy carries paragraphs at a calm, legible weight.</p>
+          </article>
+          <article class="tile">
+            <h3>Illustration system</h3>
+            <p>Flat two-tone icons: one primary hue (Dark Green/Emerald) plus one accent (Yellow/Orange/Light Blue), no outlines.</p>
+            <div class="icon-row" aria-label="Illustration-system swatches">
+              <span class="icon-tile green"></span>
+              <span class="icon-tile emerald"></span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
