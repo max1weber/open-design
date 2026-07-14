@@ -1,0 +1,208 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * design-systems/mijn-thuisbatterij/tokens.css
+ *
+ * Structured token bindings for Mijn Thuisbatterij — a Dutch home-battery
+ * advisory tool. Sourced from the official Studio Nieuwe Weide "Huisstijl"
+ * (house-style) guide: a 5-color palette (dark green, emerald, sky blue,
+ * orange, yellow), Tilt Warp for headers, Outfit Light for body copy, and
+ * the "Dongel" plug-mascot as the brand's illustration anchor.
+ *
+ * This file pre-compiles the values described in `DESIGN.md` into the
+ * schema shared with every OD design system. Agents should paste the
+ * `:root { … }` block verbatim into the first `<style>` of an artifact,
+ * then resolve every value via `var(--*)` from that point on.
+ *
+ * Schema notes (brand-specific bindings worth flagging — section
+ * references point into `DESIGN.md`):
+ *
+ *   #Bind 1  — --fg and --accent both resolve to the official Dark
+ *              Green (#0E3D23) — the house-style guide defines a
+ *              single dark green, used consistently as both the
+ *              logo's dark text and the primary CTA fill, not two
+ *              siblings (§1 Key Characteristics).
+ *
+ *   #Bind 2  — --surface-warm binds to the official Light Blue
+ *              (#9CD6E8), the exact color of the "Dongel" mascot's
+ *              body and the feature-list icon-chip background (§4
+ *              Component Stylings — Dongel Mascot).
+ *
+ *   #Bind 3  — --success binds to the official Emerald Green
+ *              (#00A36F) — the house-style guide's own rationale text
+ *              ties this green to "a rising, positive balance" (§1),
+ *              a direct semantic match for a savings/simulator
+ *              result.
+ *
+ *   #Bind 4  — --warn binds to the official Yellow (#FFCD00) — the
+ *              house-style guide ties yellow to the "lightning bolt /
+ *              energy charging" motif, a natural fit for an
+ *              attention/energy-state color.
+ *
+ *   #Bind 5  — --font-display / --font-body use the house-style
+ *              guide's exact typefaces: Tilt Warp (Google Font,
+ *              Regular) for headers and subheadings, Outfit (Google
+ *              Font, Light) for body text — both confirmed, not
+ *              substitutes (§3 Typography Rules).
+ *
+ *   #Bind 6  — --muted and --border remain estimated tints derived
+ *              from the official dark green / emerald hues — the
+ *              house-style guide defines a 5-color brand palette but
+ *              not a full UI neutral ramp. See DESIGN.md §9 Known
+ *              Gaps.
+ *
+ *   #Bind 7  — Radius scale runs chunkier than the schema defaults
+ *              (16 / 24 / 32px) to match the fully-pill CTA buttons,
+ *              the rounded logo card, and the rounded-square Dongel
+ *              icon chips.
+ *
+ * Brand-specific extensions (Layer C, declared in
+ * `_schema/tokens.schema.ts`'s `BRAND_EXTENSIONS['mijn-thuisbatterij']`):
+ *   --hero-bg               Official Emerald Green (#00A36F) — the
+ *                            hero-band wash and the "mijn" wordmark
+ *                            color. One-off, component-internal — not
+ *                            promoted to --accent or a B-slot.
+ *   --illustration-orange   Official Orange (#E94E1B) — used only
+ *                            within the flat two-tone illustration/
+ *                            icon set (§4 Illustration System), never
+ *                            as a general UI color.
+ * ─────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Surface ────────────────────────────────────────────────────
+   * White carries every section outside the hero band. The hero's
+   * emerald wash is deliberately kept out of --bg/--surface — it is
+   * a one-off section treatment, not the page canvas (see --hero-bg
+   * below). */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-warm: #9cd6e8;
+
+  /* ─── Foreground ─────────────────────────────────────────────────
+   * Official Dark Green carries body copy and headings. No second
+   * confirmed text tier, so --fg-2 and --meta alias their siblings.
+   * --muted is a derived tint for secondary/caption text — the
+   * house-style guide does not define a UI neutral ramp beyond the
+   * 5-color brand palette (DESIGN.md §9 Known Gaps). */
+  --fg: #0e3d23;
+  --fg-2: var(--fg);
+  --muted: #4c6a5b;
+  --meta: var(--muted);
+
+  /* ─── Border ─────────────────────────────────────────────────────
+   * Derived pale tint of the official Emerald Green — the house-style
+   * guide does not specify a hairline/border color. */
+  --border: #d7ece3;
+  --border-soft: var(--border);
+
+  /* ─── Accent ─────────────────────────────────────────────────────
+   * Official Dark Green — the primary CTA's solid pill fill and the
+   * secondary CTA's outline/text color (§4 Component Stylings). Hover
+   * and active states are hand-picked lighter/darker steps rather
+   * than the schema's black-mix formula, staying inside the same
+   * dark-green family the house-style guide anchors on. */
+  --accent: #0e3d23;
+  --accent-on: #ffffff;
+  --accent-hover: #13512e;
+  --accent-active: #0a2c19;
+
+  /* ─── Semantic ───────────────────────────────────────────────────
+   * Success binds to the official Emerald Green — the house-style
+   * guide's own rationale ties this hue to "a rising, positive
+   * balance," a direct match for a savings/simulator result. Warn
+   * binds to the official Yellow, tied in the guide to the
+   * lightning-bolt "energy charging" motif. Danger has no brand
+   * evidence and inherits the schema default. */
+  --success: #00a36f;
+  --warn: #ffcd00;
+  --danger: #dc2626;
+
+  /* ─── Typography — fonts ─────────────────────────────────────────
+   * Confirmed from the official house-style guide: Tilt Warp
+   * (Google Font, Regular) for headers/subheadings, Outfit (Google
+   * Font, Light) for body text. Mono inherits the schema default —
+   * no code/kbd usage evidenced. */
+  --font-display: "Tilt Warp", "Baloo 2", -apple-system, system-ui, sans-serif;
+  --font-body: "Outfit", -apple-system, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* ─── Typography — type scale ────────────────────────────────────
+   * Ceiling sized to the bold two-line hero headline ("Een batterij
+   * die jou éxact past?"); the rest of the scale follows conventional
+   * consumer-marketing steps. */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+
+  /* ─── Typography — leading & tracking ────────────────────────────
+   * Rounded geometric display faces (Baloo/Poppins family) read best
+   * slightly tighter than a grotesk, without needing negative
+   * tracking the way a condensed brand face would. */
+  --leading-body: 1.5;
+  --leading-tight: 1.15;
+  --tracking-display: 0em;
+
+  /* ─── Spacing — base scale ────────────────────────────────────────
+   * Standard 4px-grid scale; no brand evidence to deviate. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* ─── Section rhythm ──────────────────────────────────────────────
+   * Conventional consumer-marketing rhythm; no evidence to deviate. */
+  --section-y-desktop: 80px;
+  --section-y-tablet: 56px;
+  --section-y-phone: 40px;
+
+  /* ─── Radius ──────────────────────────────────────────────────────
+   * Chunkier than the schema default to match the fully-pill CTA
+   * buttons, the rounded white logo card, and the rounded-square
+   * Dongel icon chips (§4 Component Stylings). */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-pill: 9999px;
+
+  /* ─── Elevation ───────────────────────────────────────────────────
+   * No shadow evidence in the reference screenshot; inherit the
+   * schema's flat/whisper defaults rather than inventing a signature
+   * elevation treatment (DESIGN.md §6 Depth & Elevation). */
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 2px 8px color-mix(in oklab, var(--fg), transparent 92%);
+
+  /* ─── Focus ───────────────────────────────────────────────────────
+   * Schema default — accent-tinted ring reads cleanly against both
+   * the white content sections and the emerald hero band. */
+  --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+
+  /* ─── Motion ──────────────────────────────────────────────────────
+   * Schema defaults; no transition timing evidenced in a static
+   * screenshot. */
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ─── Layout ──────────────────────────────────────────────────────
+   * Conventional consumer-marketing container/gutter values; no
+   * evidence to deviate. */
+  --container-max: 1200px;
+  --container-gutter-desktop: 32px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+
+  /* ─── Brand extensions (Layer C) ──────────────────────────────────
+   * Allowlisted in _schema/tokens.schema.ts under
+   * BRAND_EXTENSIONS['mijn-thuisbatterij']. Cross-brand components
+   * must not reference these. */
+  --hero-bg: #00a36f;
+  --illustration-orange: #e94e1b;
+}
